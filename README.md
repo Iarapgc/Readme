@@ -67,6 +67,7 @@ Son las redes internas que permiten a los contenedores conectados, este proyecto
 ***Restart:*** Controla cuándo Docker debe reiniciarse en caso de fallas o comportamientos anómalos. En este caso, se reinicia siempre que se detenga.<br>
 
 ***Environment:*** Contiene las variables de entorno necesarias para la configuración del contenedor. Acá se establecen los nombres de usuario y las contraseñas para los distintos usuarios.<br>
+
 ***Ports:*** Habilita el puerto de comunicación entre el host y el contenedor, en este caso el 3360 para ambos.<br>
 
 ***Volumes:*** Se utilizan para la persistencia de datos por fuera del estado del contenedor. En este caso:
