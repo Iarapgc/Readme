@@ -16,8 +16,8 @@ services:
   mysql-admlinux
   phpmyadmin-adminux
 ```
-> Su explicación detallada de encuentra en _Servicios → MySQL_ y _Servicios → phpMyAdmin_
-<!---[Servicios → MySQL](#mysql) y [Servicios → phpMyAdmin](#phpmyadmin)--->
+> Su explicación detallada de encuentra en <!---_Servicios → MySQL_ y _Servicios → phpMyAdmin_--->
+[Servicios → MySQL](#mysql) y [Servicios → phpMyAdmin](#phpmyadmin)
 
 ```yml
 networks:
@@ -36,13 +36,13 @@ El modo ***bridge*** que entre otras cosas permite:
 
 ## Servicios
 
-**MySQL**
+### MySQL
 
 ```yml
   mysql-db:
     image: mysql:8.0
     container_name: mysql-admlinux
-    restart: unless-stopped
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: sistema_facultad
@@ -64,14 +64,14 @@ El modo ***bridge*** que entre otras cosas permite:
       - mysql-network
 ```
 
-**phpMyAdmin**
+### phpMyAdmin
 
 
 ```yml
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin-admlinux
-    restart: unless-stopped
+    restart: always
     environment:
       PMA_HOST: mysql-db
       PMA_PORT: 3306
