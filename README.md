@@ -150,7 +150,9 @@ INSERT IGNORE INTO estudiantes (nombre, apellido, legajo, email) VALUES
 INSERT IGNORE INTO materias (nombre, codigo, creditos) VALUES
 ('Linux y Virtualización', 'LINUX01', 4),
 ('Bases de Datos', 'BDAT02', 6),
-('CALCULO III', 'DOCK03', 4);```
+('CALCULO III', 'DOCK03', 4);
+```
   
 </details>
+
 > 🗂️ Archivo: [Base de Datos - Test](./scripts/init.sql)
