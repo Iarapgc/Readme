@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-admlinux
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sistema_facultad
+      
+      # Usuario administrador
+      MYSQL_USER: admlinux
+      MYSQL_PASSWORD: admin
+      
+      # Usuario de solo lectura
+      MYSQL_READONLY_USER: usuario_lectura
+      MYSQL_READONLY_PASSWORD: user
+      
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./scripts:/docker-entrypoint-initdb.d
+    networks:
+      - mysql-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-admlinux
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql-db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+      UPLOAD_LIMIT: 128M
+    ports:
+      - "8080:80"
+    networks:
+      - mysql-network
+    depends_on:
+      - mysql-db
+
+networks:
+  mysql-network:
+    driver: bridge
