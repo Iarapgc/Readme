@@ -4,8 +4,8 @@ Este proyecto busca generar una base de datos utilizando MySQL para generar tabl
 
 ## Requisitos Previos
 
-Docker<br>
-Docker Compose
+[Docker](https://docs.docker.com/engine/install/ubuntu)<br>
+[Docker Compose](https://docs.docker.com/compose/install/linux)
 
 ## Estructura
 
