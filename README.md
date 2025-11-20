@@ -1,16 +1,20 @@
 # Base de Datos MySQL
 
-Este proyecto busca generar una base de datos utilizando MySQL para generar tablas 
+Este proyecto tiene como objetivo crear un entorno para la gestión de información mediante bases de datos en MySQL, permitiendo administrarlas desde el navegador con phpMyAdmin. El sistema cuenta con un control de acceso basado en usuarios con distintos niveles de permisos. Incluye una base de prueba para verificar su correcto funcionamiento antes de comenzar a trabajar con datos reales. 
 
 ## Requisitos Previos
+>[!WARNING]
+>Los siguientes enlaces te llevarán fuera del repositorio, directamente a la página oficial de Docker, donde se encuentra el tutorial de instalación.
 
 [Docker](https://docs.docker.com/engine/install/ubuntu)<br>
 [Docker Compose](https://docs.docker.com/compose/install/linux)
 
 ## Estructura
-
+El proyecto está compuesto por dos servicios ejecutados en contenedores de docker:
 ```yml
 services:
+  mysql-admlinux:
+  phpmyadmin-adminux:
 ```
 
 
@@ -19,6 +23,8 @@ networks:
   mysql-network:
     driver: bridge
 ```
+> 🗂️ Ver archivo completo en [docker-compose.yml](./docker-compose.yml)
+
 ## Configuracion
 
 ### Servicios
@@ -96,6 +102,7 @@ default-character-set = utf8mb4
 ```
 </details>
 
+> 🗂️ Archivo: [Configuración](./config/my.cnf)
 ## Base de Datos de Prueba en (```scripts```)
 
 <details>
@@ -146,3 +153,4 @@ INSERT IGNORE INTO materias (nombre, codigo, creditos) VALUES
 ('CALCULO III', 'DOCK03', 4);```
   
 </details>
+> 🗂️ Archivo: [Base de Datos - Test](./scripts/init.sql)
