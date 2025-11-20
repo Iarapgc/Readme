@@ -22,12 +22,11 @@ services:
 ```yml
 networks:
   mysql-network:
-    driver: bridge
+    driver:
 ```
 ### Networks:
 
-Son las redes internas que permiten a los contenedores conectados, comunicarse de forma segura y aislada.
-El modo ***bridge*** que entre otras cosas permite:
+Son las redes internas que permiten a los contenedores conectados, este proyecto implementa el driver ***bridge*** que entre otras cosas permite:
 - **Aislar la comunicación entre contenedores**
 - **Usar el nombre del servicio en reemplazo de la IP**. Dado que cada vez que se levanta un contenedor este tiene una nueva IP, esto automatiza un DNS interno.
 - **Requiere exponer puertos** para acceder desde el host, lo que agrega una capa de seguridad.
@@ -63,6 +62,19 @@ El modo ***bridge*** que entre otras cosas permite:
     networks:
       - mysql-network
 ```
+***Image:*** Baja la imagen oficial de MySQL en la versión 8.0.<br><br>
+
+***Restart:*** Controla cuándo Docker debe reiniciarse en caso de fallas o comportamientos anómalos. En este caso, se reinicia siempre que se detenga.<br><br>
+
+***Environment:*** Contiene las variables de entorno necesarias para la configuración del contenedor. Acá se establecen los nombres de usuario y las contraseñas para los distintos usuarios.<br><br>
+
+***Ports:*** Habilita el puerto de comunicación entre el host y el contenedor, en este caso el 3360 para ambos.<br><br>
+
+***Volumes:*** Se utilizan para la persistencia de datos por fuera del estado del contenedor. En este caso:
+- ```./data:/var/lib/mysql```guarda los datos de la base real y los protegen de cualquier falla que puede ocurrir en el encendido del contenedor.
+- ```./scripts:/docker-entrypoint-initdb.d``` no es persistente, sino que es un volumen de montaje que ejecuta su contenido la primera vez cuando aún no existe una base de datos.<br><br>
+
+***Network:*** Red interna a la que se conecta el contenedor.<br><br>
 
 ### phpMyAdmin
 
@@ -84,6 +96,18 @@ El modo ***bridge*** que entre otras cosas permite:
     depends_on:
       - mysql-db
 ```
+
+***Image:*** Baja la imagen oficial de plhpMyAdmin y crea el contenedor que lo vincula con MySQL<br><br>
+
+***Restart:*** En este caso, se reinicia siempre que se detenga.<br><br>
+
+***Environment:*** Contiene las variables de entorno necesarias para la configuración del contenedor. Se indica a qué servicio de MySQL va a conectarse (```PMA_HOST```), el puerto al que se conecta (```PMA_PORT```), la contraseña del usuario root para poder ingresar sesión desde la web (```MYSQL_ROOT_PASSWORD```) y el tamaño máximo que se puede cargar (```UPLOAD_LIMIT```)<br><br>
+
+***Ports:*** Habilita el puerto 8080 del host y el 80 del contenedor.<br><br>
+
+***Network:*** Red interna a la que se conecta el contenedor.<br><br>
+
+***Depends_on:*** Define las dependencias de arranque entre los distintos contenedores del proyecto. En este caso, el servicio se inicia luego de MySQL (```mysql```)<br><br>
 
 >[!Note]
 >En caso de no clonar el repositorio completo, es necesario crear en la carpeta del proyecto dos directorios: ```config``` y ```scripts``` y dentro copiar los códigos adjuntados en las secciones <!---_Conf Adicional_ y _Base de Datos de Prueba_ -->
