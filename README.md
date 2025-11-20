@@ -1,4 +1,4 @@
-![CandleSpacexGIF](https://github.com/user-attachments/assets/ca054968-67eb-4ed6-9c7d-05fd89d9811a)# Base de Datos MySQL
+# Base de Datos MySQL
 
 Este proyecto tiene como objetivo crear un entorno para la gestión de información mediante bases de datos en MySQL, permitiendo administrarlas desde el navegador con phpMyAdmin. El sistema cuenta con un control de acceso basado en usuarios con distintos niveles de permisos. Incluye una base de prueba para verificar su correcto funcionamiento antes de comenzar a trabajar con datos reales. 
 
