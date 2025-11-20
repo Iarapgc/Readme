@@ -4,7 +4,7 @@ Este proyecto tiene como objetivo crear un entorno para la gestión de informaci
 
 ## Requisitos Previos
 >[!WARNING]
->Los siguientes enlaces te llevarán fuera del repositorio, directamente a la página oficial de Docker, donde se encuentra el tutorial de instalación.
+>Los siguientes enlaces te llevarán fuera del repositorio, directamente a la página oficial de Docker🐋, donde se encuentra el tutorial de instalación.
 
 [Docker](https://docs.docker.com/engine/install/ubuntu)<br>
 [Docker Compose](https://docs.docker.com/compose/install/linux)
@@ -13,21 +13,28 @@ Este proyecto tiene como objetivo crear un entorno para la gestión de informaci
 El proyecto está compuesto por dos servicios ejecutados en contenedores de docker:
 ```yml
 services:
-  mysql-admlinux:
-  phpmyadmin-adminux:
+  mysql-admlinux
+  phpmyadmin-adminux
 ```
-
+> Su explicación detallada de encuentra en _Servicios → MySQL_ y _Servicios → phpMyAdmin_
+<!---[Servicios → MySQL](#mysql) y [Servicios → phpMyAdmin](#phpmyadmin)--->
 
 ```yml
 networks:
   mysql-network:
     driver: bridge
 ```
+### Networks:
+
+Son las redes internas que permiten a los contenedores conectados, comunicarse de forma segura y aislada.
+El modo ***bridge*** que entre otras cosas permite:
+- **Aislar la comunicación entre contenedores**
+- **Usar el nombre del servicio en reemplazo de la IP**. Dado que cada vez que se levanta un contenedor este tiene una nueva IP, esto automatiza un DNS interno.
+- **Requiere exponer puertos** para acceder desde el host, lo que agrega una capa de seguridad.
+  
 > 🗂️ Ver archivo completo en [docker-compose.yml](./docker-compose.yml)
 
-## Configuracion
-
-### Servicios
+## Servicios
 
 **MySQL**
 
@@ -79,12 +86,13 @@ networks:
 ```
 
 >[!Note]
->En caso de no clonar el repositorio completo, es necesario crear en la carpeta del proyecto dos directorios: ```config``` y ```scripts``` y dentro copiar los códigos adjuntados en las secciones
+>En caso de no clonar el repositorio completo, es necesario crear en la carpeta del proyecto dos directorios: ```config``` y ```scripts``` y dentro copiar los códigos adjuntados en las secciones <!---_Conf Adicional_ y _Base de Datos de Prueba_ -->
 
-👉 [Conf Adicional](#conf-adicional-en-config)<br>
+👉 [Conf Adicional](#conf-adicional-en-config)
+<br>
 👉 [Base de Datos de Prueba](#base-de-datos-de-prueba-en-scripts) <!-- Arreglar los botones -->
 
-## Conf Adicional en (```config```)
+## Conf Adicional en config
 
 <details>
   <summary> Desplegar </summary>
@@ -103,7 +111,7 @@ default-character-set = utf8mb4
 </details>
 
 > 🗂️ Archivo: [Configuración](./config/my.cnf)
-## Base de Datos de Prueba en (```scripts```)
+## Base de Datos de Prueba en scripts
 
 <details>
 <summary>Desplegar</summary>
